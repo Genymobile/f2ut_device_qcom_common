@@ -738,4 +738,4 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 #$(call inherit-product, frameworks/base/data/fonts/fonts.mk)
 #$(call inherit-product, frameworks/base/data/keyboards/keyboards.mk)
 
-PRODUCT_CHARACTERISTICS := nosdcard
+#PRODUCT_CHARACTERISTICS := nosdcard
