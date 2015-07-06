@@ -539,6 +539,7 @@ PRODUCT_PACKAGES := \
     LatinIME \
     Launcher2 \
     Mms \
+    SoundRecorder \
     Music \
     Phone \
     Provision \
