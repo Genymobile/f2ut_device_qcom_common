@@ -38,9 +38,6 @@ uicc_insert()
     "msm8226")
         echo 1 > /sys/bus/platform/devices/msm_smsc_hub/enable
         ;;
-    "msm8974")
-        echo msm_ehci_host > /sys/bus/platform/drivers/msm_ehci_host/bind
-        ;;
     *)
         echo "USB_UICC invalid target when insert uicc!"
         ;;
@@ -56,26 +53,9 @@ uicc_remove()
     "msm8226")
         echo 0 > /sys/bus/platform/devices/msm_smsc_hub/enable
         ;;
-    "msm8974")
-        echo msm_ehci_host > /sys/bus/platform/drivers/msm_ehci_host/unbind
-        ;;
     *)
         echo "USB_UICC invalid target when remove uicc!"
         ;;
     esac
 }
-
-case $action in
-"1")
-    uicc_insert
-    setprop usb_uicc.loading 1
-    ;;
-"0")
-    uicc_remove
-    setprop usb_uicc.loading 1
-    ;;
-*)
-    echo "USB_UICC invalid action for uicc operation!"
-    ;;
-esac
 
