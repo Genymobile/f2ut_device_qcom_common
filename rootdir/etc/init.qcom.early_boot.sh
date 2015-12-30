@@ -166,29 +166,30 @@ esac
 # HDMI can be fb1 or fb2
 # Loop through the sysfs nodes and determine
 # the HDMI(dtv panel)
-for fb_cnt in 0 1 2
-do
-file=/sys/class/graphics/fb$fb_cnt
-dev_file=/dev/graphics/fb$fb_cnt
-  if [ -d "$file" ]
-  then
-    value=`cat $file/msm_fb_type`
-    case "$value" in
-            "dtv panel")
-        chown -h system.graphics $file/hpd
-        chown -h system.system $file/hdcp/tp
-        chown -h system.graphics $file/vendor_name
-        chown -h system.graphics $file/product_description
-        chmod -h 0664 $file/hpd
-        chmod -h 0664 $file/hdcp/tp
-        chmod -h 0664 $file/vendor_name
-        chmod -h 0664 $file/product_description
-        chmod -h 0664 $file/video_mode
-        chmod -h 0664 $file/format_3d
-        # create symbolic link
-        ln -s $dev_file /dev/graphics/hdmi
-        # Change owner and group for media server and surface flinger
-        chown -h system.system $file/format_3d;;
-    esac
-  fi
-done
+#there isn't HDMI in FP2 phone, so remove this setup
+#for fb_cnt in 0 1 2
+#do
+#file=/sys/class/graphics/fb$fb_cnt
+#dev_file=/dev/graphics/fb$fb_cnt
+#  if [ -d "$file" ]
+#  then
+#    value=`cat $file/msm_fb_type`
+#    case "$value" in
+#            "dtv panel")
+#        chown -h system.graphics $file/hpd
+#        chown -h system.system $file/hdcp/tp
+#        chown -h system.graphics $file/vendor_name
+#        chown -h system.graphics $file/product_description
+#        chmod -h 0664 $file/hpd
+#        chmod -h 0664 $file/hdcp/tp
+#        chmod -h 0664 $file/vendor_name
+#        chmod -h 0664 $file/product_description
+#        chmod -h 0664 $file/video_mode
+#        chmod -h 0664 $file/format_3d
+#        # create symbolic link
+#        ln -s $dev_file /dev/graphics/hdmi
+#        # Change owner and group for media server and surface flinger
+#        chown -h system.system $file/format_3d;;
+#    esac
+#  fi
+#done
