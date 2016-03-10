@@ -27,6 +27,7 @@
 #
 
 target=`getprop ro.board.platform`
+build_type=`getprop ro.build.type`
 case "$target" in
     "msm7201a_ffa" | "msm7201a_surf" | "msm7627_ffa" | "msm7627_6x" | "msm7627a"  | "msm7627_surf" | \
     "qsd8250_surf" | "qsd8250_ffa" | "msm7630_surf" | "msm7630_1x" | "msm7630_fusion" | "qsd8650a_st1x")
@@ -333,6 +334,12 @@ case "$target" in
         chmod -h 664 /sys/devices/system/cpu/cpu2/online
         chmod -h 664 /sys/devices/system/cpu/cpu3/online
         echo 1 > /dev/cpuctl/apps/cpu.notify_on_migrate
+	if [ $build_type == "user" ]; then
+		echo related > /sys/bus/msm_subsys/devices/subsys0/restart_level
+		echo related > /sys/bus/msm_subsys/devices/subsys1/restart_level
+		echo related > /sys/bus/msm_subsys/devices/subsys2/restart_level
+		echo related > /sys/bus/msm_subsys/devices/subsys3/restart_level
+	fi
     ;;
 esac
 
